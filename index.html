@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+
+        <title>Rock Paper Scissors Game</title>
+
+    </head>
+
+    <body> 
+
+        <script>  
+
+            //A function to randomly select rock, paper ,or scissors for the computer's turn
+            function computerPlay(){ 
+
+                //Holds the values that the computer selects from at random
+                let computerArray = ['Rock', 'Paper', 'Scissors']; 
+
+                //Holds the randomly selected value from computerArray 
+                let computerSelection = computerArray[Math.floor(Math.random() * computerArray.length)]; 
+
+                //Returns the computer selection
+                return computerSelection;
+
+            } 
+
+            //Plays 5 rounds of the game and prompts the user for their turn 
+            function game(){ 
+                //Loops 5 times to ask the players selection and plays five rounds of the game 
+                for(i = 0; i < 5; i++){  
+                    computerSelection = computerPlay();
+                    playerSelection = prompt("Please type rock, paper, or scissors."); 
+                    console.log(playRound(playerSelection, computerSelection));
+                }
+
+            }
+
+            //Calls the function computerPlay and uses the return value to play against the player
+            function playRound(playerSelection, computerSelection) {
+	            //Variables to hold the win, lose, and tie messages
+                let winStr = "You Win! " + computerSelection + ' ' + "loses to " + playerSelection; 
+                let loseStr = "You Lose! " + computerSelection + ' ' + "beats " + playerSelection;
+                let tieStr = "It's a Tie! " + computerSelection + ' ' + "ties " + playerSelection;
+
+                //Variables to convert the selections to lowercase so it can be case insensitive 
+                let playerSel = playerSelection.toLowerCase(); 
+                let computerSel = computerSelection.toLowerCase(); 
+
+                //Check who wins and return the right string 
+                if (computerSel === 'rock' && playerSel ==='scissors') { 
+                    return loseStr;
+                } else if (computerSel === 'rock' && playerSel === 'paper') { 
+                    return winStr;
+                } else if (computerSel === 'scissors' && playerSel === 'paper') { 
+                    return loseStr;
+                } else if (computerSel === 'scissors' && playerSel === 'rock') { 
+                    return winStr;
+                } else if (computerSel === 'paper' && playerSel === 'rock') { 
+                    return loseStr;
+                } else if (computerSel === 'paper' && playerSel === 'scissors') { 
+                    return winStr;
+                } else { 
+                    return tieStr;
+                }
+
+            }
+            //Stores the player selection
+            let playerSelection = "";
+            //Gets and stores the randomized computer selection
+            let computerSelection = ""; 
+            //Calls the game() function that p[lays the game 5 times
+            game();
+        </script>
+
+    </body>
+</html>
